@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="rtfmApp">
+<head>
+	<title>RTFM</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-controller='controller'>
+	
+	<!-- Add your site or application content here -->
+    <div class="container" ng-view>
+
+<form>
+	<input type="text" placeholder="What is your question?" ng-model="question">
+	<button class="button" ng-click="postData()">Submit Question</button>
+</form>
+
+<div class="question-container">
+  <p ng-repeat="question in questions"> {{question.text}} </p>
+</div>
+
+{{ env }}
+
+	</div>
+
+	<div>
+    <h1>{{ thread.title }} (by {{ thread.username }})</h1>
+
+    <form name="newCommentForm">
+        <input type="text" ng-model="newCommentText" placeholder="Write a comment..." required/>
+        <button ng-disabled="newCommentForm.$invalid" ng-click="createComment(username, newCommentText)">Add Comment</button>
+    </form>
+
+    <ul>
+        <li ng-repeat="comment in comments">{{ comment.username }}: {{ comment.text }}</li>
+    </ul>
+</div>
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>
+
+<!-- Are my scripts the problem if I'm getting an error? -->
+<script src="js/env.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controller.js"></script>
+<script src="js/service.js"></script>
+</body>
+</html>
